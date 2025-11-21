@@ -1,0 +1,11 @@
+# create_dummy_model.py
+import joblib
+from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+
+# fake training
+X = np.random.rand(200,5)
+y = (X[:,0] < 0.3).astype(int)  # if soil_moisture small -> need water
+clf = RandomForestClassifier(n_estimators=10)
+clf.fit(X,y)
+joblib.dump({'model': clf}, 'models/dummy_model.joblib')
